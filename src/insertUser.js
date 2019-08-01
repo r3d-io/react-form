@@ -11,12 +11,12 @@ class InsertUser extends React.Component {
     this.handleNumChange = this.handleNumChange.bind(this);
   }
 
-  componentWillReceiveProps() {
-    if (this.props.editUserStatus) {
-      this.setState({ name: this.props.userDetail.name, age: this.props.userDetail.age });
-    }
-    else {
-      this.setState({ name: '', age: '' });
+  componentWillReceiveProps(newProps) {
+    if (newProps.editUserStatus) {
+      this.setState({ 
+        name: newProps.userDetail.name, 
+        age: newProps.userDetail.age 
+      });
     }
   }
 

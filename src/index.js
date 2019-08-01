@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './index.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import ShowList from './showList';
 import InsertUser from './insertUser';
@@ -34,7 +34,7 @@ class UserForm extends React.Component {
       if (data.name !== '' && data.age !== '') {
         this.state.userList.push(data)
         this.setState({
-          userList: this.state.userList
+          userList: this.state.userList,
         });
       }
     }
@@ -58,6 +58,20 @@ class UserForm extends React.Component {
   }
 
   render() {
+    if (this.state.userList.length > 0)
+      return (
+        <div>
+          <InsertUser
+            addUserToList={this.setUser}
+            editUserStatus={this.state.editUserStatus}
+            userDetail={this.state.userDetail}
+          />
+          <ShowList
+            list={this.state.userList}
+            editUserDetail={this.editUser}
+          />,
+      </div>
+      );
     return (
       <div>
         <InsertUser
@@ -65,11 +79,7 @@ class UserForm extends React.Component {
           editUserStatus={this.state.editUserStatus}
           userDetail={this.state.userDetail}
         />
-        <ShowList
-          list={this.state.userList}
-          editUserDetail={this.editUser}
-        />,
-			</div>
+      </div>
     );
   }
 }
@@ -80,5 +90,5 @@ ReactDOM.render(<UserForm />, document.getElementById('root'));
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
-        // https://codepen.io/PiotrBerebecki/pen/dpRdKP?editors=0010
+// https://codepen.io/PiotrBerebecki/pen/dpRdKP?editors=0010
 // https://www.codingame.com/playgrounds/8747/react-lifecycle-methods-render-and-componentdidmount

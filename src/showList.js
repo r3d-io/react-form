@@ -67,7 +67,7 @@ class ShowList extends React.Component {
     return (
       <div>
         <h1>User Detail</h1>
-        <table>
+        <table className="table">
           <tbody>
             <tr>
               <th>SNo.</th>
