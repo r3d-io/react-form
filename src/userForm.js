@@ -1,11 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './index.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import './index.css';
 import App from './App';
 import ShowList from './showList';
 import InsertUser from './insertUser';
-import * as serviceWorker from './serviceWorker';
 
 class UserForm extends React.Component {
 
@@ -41,19 +40,19 @@ class UserForm extends React.Component {
   }
 
   editUser(data) {
-    console.log("edit", data)
+    
+    this.setState({
+      editUserStatus: true,
+      userDetail: this.state.userList[data.index],
+      userIndex: data.index
+    });
+
     if (data.type === 'delete') {
-      delete this.state.userList[data.index]
+      // this.state.userList.splice(this.state.userIndex, 1)
+      delete this.state.userList[this.state.userIndex]
       this.setState({
-        editUserStatus: false,
         userList: this.state.userList,
-      });
-    } 
-    else {
-      this.setState({
-        editUserStatus: true,
-        userDetail: this.state.userList[data.index],
-        userIndex: data.index
+        editUserStatus: false,
       });
     }
   }
@@ -85,11 +84,4 @@ class UserForm extends React.Component {
   }
 }
 
-ReactDOM.render(<UserForm />, document.getElementById('root'));
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
-// https://codepen.io/PiotrBerebecki/pen/dpRdKP?editors=0010
-// https://www.codingame.com/playgrounds/8747/react-lifecycle-methods-render-and-componentdidmount
+export default UserForm
