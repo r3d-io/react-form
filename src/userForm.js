@@ -1,8 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
-import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import ShowList from './showList';
 import InsertUser from './insertUser';
 
@@ -40,19 +38,19 @@ class UserForm extends React.Component {
   }
 
   editUser(data) {
-    
-    this.setState({
-      editUserStatus: true,
-      userDetail: this.state.userList[data.index],
-      userIndex: data.index
-    });
-
     if (data.type === 'delete') {
       // this.state.userList.splice(this.state.userIndex, 1)
-      delete this.state.userList[this.state.userIndex]
+      delete this.state.userList[data.index]
       this.setState({
         userList: this.state.userList,
         editUserStatus: false,
+      });
+    }
+    else {
+      this.setState({
+        editUserStatus: true,
+        userDetail: this.state.userList[data.index],
+        userIndex: data.index
       });
     }
   }
