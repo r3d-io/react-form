@@ -1,4 +1,4 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
+  import 'bootstrap/dist/css/bootstrap.min.css';
 import '../index.css';
 import React from 'react';
 import ShowList from './showList';
@@ -12,7 +12,6 @@ class UserForm extends React.Component {
   }
 
   render() {
-    console.log(this.props)
     if (this.props.users.userList.length > 0)
       return (
         <div>

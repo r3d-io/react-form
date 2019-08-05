@@ -31,21 +31,23 @@ class InsertUser extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log(this.props.users.userDetail.id)
-    if (this.props.users.userDetail.id > 0)
+    console.log("submit", this.props)
+    if (this.props.users.userDetail.userEdit) {
+      this.props.dispatch({
+        type: UPDATE_USER,
+        name: this.state.name,
+        age: this.state.age,
+        id: this.props.users.userDetail.userIndex
+      });
+    }
+    else {
       this.props.dispatch({
         type: ADD_USER,
         name: this.state.name,
         age: this.state.age,
         id: this.props.users.userList.length + 1
       });
-    else
-      this.props.dispatch({
-        type: UPDATE_USER,
-        name: this.state.name,
-        age: this.state.age,
-        id: 0
-      });
+    }
     this.setState({ name: this.props.users.userDetail.name, age: this.props.users.userDetail.age });
   }
 

@@ -5,7 +5,8 @@ const defaultState = {
   userDetail: {
     name: '',
     age: '',
-    userIndex: 0
+    userIndex: 0,
+    userEdit: false
   }
 }
 
@@ -48,7 +49,8 @@ function users(state = defaultState, action) {
         userDetail: {
           name: userList[action.id].name,
           age: userList[action.id].age,
-          userIndex: action.id
+          userIndex: action.id,
+          userEdit: true
         }
       };
     }
