@@ -1,6 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import '../index.css';
+import {connect} from 'react-redux';
+import { UPDATE_USER_INDEX, DELETE_USER } from '../actions/types';
 
 class ListElement extends React.Component {
   render() {
@@ -25,7 +27,7 @@ class ShowList extends React.Component {
 
   updateValue(event, userIndex, actionType) {
     event.preventDefault();
-    this.props.editUserDetail({ index: userIndex, type: actionType });
+    this.props.dispatch({ type:actionType, id:userIndex });
   }
 
   editUser(index) {
@@ -33,7 +35,7 @@ class ShowList extends React.Component {
       <button
         type='submit'
         value={index}
-        onClick={(event) => this.updateValue(event, index, 'update')}
+        onClick={(event) => this.updateValue(event, index, UPDATE_USER_INDEX)}
         className="btn btn-sm btn-primary"
       >Edit</button>
     )
@@ -44,7 +46,7 @@ class ShowList extends React.Component {
       <button
         type='submit'
         value={index}
-        onClick={(event) => this.updateValue(event, index, 'delete')}
+        onClick={(event) => this.updateValue(event, index, DELETE_USER)}
         className="btn btn-sm btn-danger"
       >Delete</button>
     )
@@ -52,15 +54,14 @@ class ShowList extends React.Component {
 
   render() {
     let list = [];
-
-    this.props.list.forEach((user, index) => {
+    this.props.users.userList.forEach((user) => {
       list.push(<ListElement
-        index={index + 1}
-        key={index}
+        index={user.id}
+        key={user.id}
         name={user.name}
         age={user.age}
-        edit={this.editUser(index)}
-        delete={this.deleteUser(index)}
+        edit={this.editUser(user.id)}
+        delete={this.deleteUser(user.id)}
       />);
     })
 
@@ -82,4 +83,8 @@ class ShowList extends React.Component {
   }
 }
 
-export default ShowList
+const mapStateToProps = (state) => {
+  return state
+}
+
+export default connect(mapStateToProps)(ShowList);

@@ -1,23 +1,24 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import '../index.css';
+import { connect } from 'react-redux';
+import { ADD_USER, UPDATE_USER } from '../actions/types';
+
 
 class InsertUser extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { name: this.props.userDetail.name, age: this.props.userDetail.age };
+    this.state = { name: this.props.users.userDetail.name, age: this.props.users.userDetail.age };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleTextChange = this.handleTextChange.bind(this);
     this.handleNumChange = this.handleNumChange.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
-    if (newProps.editUserStatus) {
-      this.setState({ 
-        name: newProps.userDetail.name, 
-        age: newProps.userDetail.age 
-      });
-    }
+    this.setState({
+      name: newProps.users.userDetail.name,
+      age: newProps.users.userDetail.age
+    });
   }
 
   handleTextChange(event) {
@@ -30,9 +31,22 @@ class InsertUser extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.addUserToList({ name: this.state.name, age: this.state.age });
-    this.setState({ name: '', age: '' });
-    console.log(this.state)
+    console.log(this.props.users.userDetail.id)
+    if (this.props.users.userDetail.id > 0)
+      this.props.dispatch({
+        type: ADD_USER,
+        name: this.state.name,
+        age: this.state.age,
+        id: this.props.users.userList.length + 1
+      });
+    else
+      this.props.dispatch({
+        type: UPDATE_USER,
+        name: this.state.name,
+        age: this.state.age,
+        id: 0
+      });
+    this.setState({ name: this.props.users.userDetail.name, age: this.props.users.userDetail.age });
   }
 
   render() {
@@ -85,4 +99,8 @@ class InsertUser extends React.Component {
   }
 }
 
-export default InsertUser
+const mapStateToProps = (state) => {
+  return state
+}
+
+export default connect(mapStateToProps)(InsertUser);

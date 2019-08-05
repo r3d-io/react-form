@@ -1,9 +1,10 @@
 import { ADD_USER, DELETE_USER } from './types';
+let nextUserId = 0
 
-export const addUser = ({ id, name, age }) => ({
+export const addUser = ({ name, age }) => ({
   type: ADD_USER,
   payload: {
-    id,
+    id: nextUserId++,
     name,
     age
   }
