@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import UserForm from './userForm';
+import UserForm from './components/userForm';
 
 function App() {
   return (

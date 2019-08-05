@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../index.css';
 import React from 'react';
-import './index.css';
 import ShowList from './showList';
 import InsertUser from './insertUser';
 

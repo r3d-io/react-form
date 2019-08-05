@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
-import './index.css';
+import '../index.css';
 
 class ListElement extends React.Component {
   render() {
