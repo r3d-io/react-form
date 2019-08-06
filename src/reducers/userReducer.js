@@ -1,4 +1,4 @@
-import { ADD_USER, DELETE_USER, UPDATE_USER, UPDATE_USER_INDEX } from '../actions/types';
+import { ADD_USER, DELETE_USER, UPDATE_USER, UPDATE_USER_INDEX, UPDATE_FORM } from '../actions/types';
 
 const defaultState = {
   userList: [{ name: "foo", age: "40", id: 1 }, { name: "bar", age: "45", id: 2 }],
@@ -39,6 +39,21 @@ function users(state = defaultState, action) {
       return {
         userList,
         userDetail: defaultState.userDetail
+      };
+    }
+    case UPDATE_FORM:{
+      let userList = state.userList;
+      console.log(action.name,action.age)
+      let userName = action.name ? action.name : state.userDetail.name
+      let userAge = action.age ? action.age : state.userDetail.age
+      return {
+        userList,
+        userDetail: {
+          name: userName,
+          age: userAge,
+          userIndex: state.userDetail.userIndex,
+          userEdit: state.userDetail.userEdit
+        }
       };
     }
     case UPDATE_USER_INDEX: {
