@@ -4,11 +4,34 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import rootReducer from './reducers'
 import * as serviceWorker from './serviceWorker';
 
-const store = createStore(rootReducer)
+const timeoutScheduler = store => next => action => {
+  if (!action.meta || !action.meta.delay) {
+    return next(action)
+  }
+
+  const timeoutId = setTimeout(() => next(action), action.meta.delay)
+
+  return function cancel() {
+    clearTimeout(timeoutId)
+  }
+}
+
+const logger = store => next => action => {
+  console.log('dispatching', action)
+  let result = next(action)
+  console.log('next state', store.getState())
+  return result
+}
+
+
+const store = createStore(
+  rootReducer, 
+  applyMiddleware(logger, timeoutScheduler)
+)
 
 ReactDOM.render(
   <Provider store={store}>

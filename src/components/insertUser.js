@@ -45,7 +45,8 @@ class InsertUser extends React.Component {
         type: ADD_USER,
         name: this.state.name,
         age: this.state.age,
-        id: this.props.users.userList.length + 1
+        id: this.props.users.userList.length + 1,
+        meta: { delay: 3000 }
       });
     }
     this.setState({
