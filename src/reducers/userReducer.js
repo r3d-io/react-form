@@ -43,7 +43,6 @@ function users(state = defaultState, action) {
     }
     case UPDATE_FORM:{
       let userList = state.userList;
-      console.log(action.name,action.age)
       let userName = action.name ? action.name : state.userDetail.name
       let userAge = action.age ? action.age : state.userDetail.age
       return {

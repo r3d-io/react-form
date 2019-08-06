@@ -10,11 +10,15 @@ import logger from 'redux-logger'
 import * as serviceWorker from './serviceWorker';
 
 const timeoutScheduler = store => next => action => {
-  if (action.type !== 'ADD_USER') {
+  console.log("middleware", action)
+  if (action.type !== 'USER_ADD_INPROGRESS') {
     return next(action)
   }
-  store.dispatch({type: "USER_ADD_COMPLETE"})
+
+  action.type = "ADD_USER"
   const timeoutId = setTimeout(() => next(action), 2000)
+  store.dispatch({ type: "USER_ADD_COMPLETE" })
+
   return function cancel() {
     clearTimeout(timeoutId)
   }

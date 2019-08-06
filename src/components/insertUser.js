@@ -37,9 +37,8 @@ class InsertUser extends React.Component {
       });
     }
     else {
-      this.props.dispatch({ type: "USER_ADD_INPROGRESS" })
       this.props.dispatch({
-        type: ADD_USER,
+        type: 'USER_ADD_INPROGRESS',
         name: this.props.users.userDetail.name,
         age: this.props.users.userDetail.age,
         id: this.props.users.userList.length + 1,
