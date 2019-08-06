@@ -13,7 +13,6 @@ const timeoutScheduler = store => next => action => {
   if (action.type !== 'ADD_USER') {
     return next(action)
   }
-  store.dispatch({type: "USER_ADD_INPROGRESS"})
   store.dispatch({type: "USER_ADD_COMPLETE"})
   const timeoutId = setTimeout(() => next(action), 2000)
   return function cancel() {
