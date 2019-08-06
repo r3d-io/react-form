@@ -6,30 +6,23 @@ import App from './App';
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import rootReducer from './reducers'
+import logger from 'redux-logger'
 import * as serviceWorker from './serviceWorker';
 
 const timeoutScheduler = store => next => action => {
-  if (!action.meta || !action.meta.delay) {
+  if (action.type !== 'ADD_USER') {
     return next(action)
   }
-
-  const timeoutId = setTimeout(() => next(action), action.meta.delay)
-
+  store.dispatch({type: "USER_ADD_INPROGRESS"})
+  store.dispatch({type: "USER_ADD_COMPLETE"})
+  const timeoutId = setTimeout(() => next(action), 2000)
   return function cancel() {
     clearTimeout(timeoutId)
   }
 }
 
-const logger = store => next => action => {
-  console.log('dispatching', action)
-  let result = next(action)
-  console.log('next state', store.getState())
-  return result
-}
-
-
 const store = createStore(
-  rootReducer, 
+  rootReducer,
   applyMiddleware(logger, timeoutScheduler)
 )
 

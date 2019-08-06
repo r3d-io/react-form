@@ -4,7 +4,6 @@ import '../index.css';
 import { connect } from 'react-redux';
 import { ADD_USER, UPDATE_USER } from '../actions/types';
 
-
 class InsertUser extends React.Component {
   constructor(props) {
     super(props);
@@ -46,7 +45,6 @@ class InsertUser extends React.Component {
         name: this.state.name,
         age: this.state.age,
         id: this.props.users.userList.length + 1,
-        meta: { delay: 3000 }
       });
     }
     this.setState({
