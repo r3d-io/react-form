@@ -7,10 +7,6 @@ import { connect } from 'react-redux';
 
 class UserForm extends React.Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     if (this.props.users.userList.length > 0)
       return (

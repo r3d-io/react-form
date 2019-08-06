@@ -27,6 +27,7 @@ class ShowList extends React.Component {
 
   updateValue(event, userIndex, actionType) {
     event.preventDefault();
+    // console.log(actionType,userIndex)
     this.props.dispatch({ type:actionType, id:userIndex });
   }
 

@@ -34,7 +34,7 @@ function users(state = defaultState, action) {
     }
     case UPDATE_USER: {
       let userList = state.userList;
-      let userDetail = { name: action.name, age: action.age, id: action.id }
+      let userDetail = { name: action.name, age: action.age, id: action.id + 1 }
       userList[action.id] = userDetail
       return {
         userList,

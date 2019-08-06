@@ -31,7 +31,7 @@ class InsertUser extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log("submit", this.props)
+    // console.log("submit", this.props)
     if (this.props.users.userDetail.userEdit) {
       this.props.dispatch({
         type: UPDATE_USER,
@@ -48,7 +48,10 @@ class InsertUser extends React.Component {
         id: this.props.users.userList.length + 1
       });
     }
-    this.setState({ name: this.props.users.userDetail.name, age: this.props.users.userDetail.age });
+    this.setState({
+      name: this.props.users.userDetail.name,
+      age: this.props.users.userDetail.age
+    });
   }
 
   render() {
