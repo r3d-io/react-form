@@ -6,10 +6,10 @@ const timeoutScheduler = store => next => action => {
     return next(action)
   }
 
-  store.dispatch({ type: "USER_ADD_INPROGRESS" })
+  next({ type: "USER_ADD_INPROGRESS" })
   const timeoutId = setTimeout(() => next(action), 2000)
   setTimeout(() => {
-    store.dispatch({ type: "USER_ADD_COMPLETE" })
+    next({ type: "USER_ADD_COMPLETE" })
   }, 2100);
 }
 
