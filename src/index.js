@@ -9,10 +9,14 @@ import rootReducer from './reducers'
 import logger from 'redux-logger'
 import * as serviceWorker from './serviceWorker';
 import timeoutScheduler from "./middleware"
+import thunk from "redux-thunk"
 
 const store = createStore(
   rootReducer,
-  applyMiddleware(timeoutScheduler, logger)
+  applyMiddleware(timeoutScheduler,
+    thunk,
+    logger,
+  )
 )
 
 ReactDOM.render(

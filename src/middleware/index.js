@@ -7,10 +7,10 @@ const timeoutScheduler = store => next => action => {
   }
 
   next({ type: "USER_ADD_INPROGRESS" })
-  const timeoutId = setTimeout(() => next(action), 2000)
-  setTimeout(() => {
+  const timeoutId = setTimeout(() => {
+    next(action)
     next({ type: "USER_ADD_COMPLETE" })
-  }, 2100);
+  }, 2000)
 }
 
 export default timeoutScheduler
