@@ -18,7 +18,7 @@ class ListElement extends React.Component {
   }
 };
 
-class ShowList extends React.Component {
+class UserList extends React.Component {
 
   constructor(props) {
     super(props);
@@ -88,4 +88,4 @@ const mapStateToProps = (state) => {
   return state
 }
 
-export default connect(mapStateToProps)(ShowList);
+export default connect(mapStateToProps)(UserList);

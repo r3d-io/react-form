@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import UserForm from './components/userForm';
+import UserContainer from './components/userContainer';
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <UserForm />
+        <UserContainer />
         <a
           className="App-link"
           href="https://reactjs.org"

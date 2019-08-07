@@ -14,7 +14,8 @@ function users(state = defaultState, action) {
   switch (action.type) {
     case ADD_USER: {
       let userList = state.userList;
-      userList.push({ name: action.name, age: action.age, id: action.id })
+      if (action.name !== "" && action.age !== "")
+        userList.push({ name: action.name, age: action.age, id: action.id })
       return {
         userList,
         userDetail: defaultState.userDetail
@@ -41,7 +42,7 @@ function users(state = defaultState, action) {
         userDetail: defaultState.userDetail
       };
     }
-    case UPDATE_FORM:{
+    case UPDATE_FORM: {
       let userList = state.userList;
       let userName = action.name ? action.name : state.userDetail.name
       let userAge = action.age ? action.age : state.userDetail.age
