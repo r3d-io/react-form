@@ -8,16 +8,22 @@ import { createStore, applyMiddleware } from 'redux'
 import rootReducer from './reducers'
 import logger from 'redux-logger'
 import * as serviceWorker from './serviceWorker';
-import timeoutScheduler from "./middleware"
+import timeoutSchedulerSaga from "./middleware"
 import thunk from "redux-thunk"
+import createSagaMiddleware from 'redux-saga';
+
+const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(
   rootReducer,
-  applyMiddleware(timeoutScheduler,
+  applyMiddleware(
+    sagaMiddleware,
     thunk,
     logger,
   )
 )
+
+sagaMiddleware.run(timeoutSchedulerSaga);
 
 ReactDOM.render(
   <Provider store={store}>

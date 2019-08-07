@@ -44,10 +44,6 @@ class UserForm extends React.Component {
         id: this.props.users.userList.length + 1,
       });
     }
-    this.setState({
-      name: this.props.users.userDetail.name,
-      age: this.props.users.userDetail.age
-    });
   }
 
   render() {

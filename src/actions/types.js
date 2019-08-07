@@ -3,5 +3,8 @@ export const DELETE_USER = 'DELETE_USER';
 export const UPDATE_USER = 'UPDATE_USER';
 export const UPDATE_USER_INDEX = 'UPDATE_USER_INDEX';
 export const UPDATE_FORM = 'UPDATE_FORM';
+export const USER_ADD_INPROGRESS = 'USER_ADD_INPROGRESS';
+export const USER_ADD_COMPLETE = 'USER_ADD_COMPLETE';
+
 
 

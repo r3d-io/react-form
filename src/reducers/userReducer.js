@@ -14,7 +14,7 @@ function users(state = defaultState, action) {
   switch (action.type) {
     case ADD_USER: {
       let userList = state.userList;
-      if (action.name !== "" && action.age !== "")
+      if (action.name !== "" && action.age !== "" && action.isInsert)
         userList.push({ name: action.name, age: action.age, id: action.id })
       return {
         userList,
