@@ -38,7 +38,7 @@ class InsertUser extends React.Component {
     }
     else {
       this.props.dispatch({
-        type: 'USER_ADD_INPROGRESS',
+        type: ADD_USER,
         name: this.props.users.userDetail.name,
         age: this.props.users.userDetail.age,
         id: this.props.users.userList.length + 1,
