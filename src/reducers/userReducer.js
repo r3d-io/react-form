@@ -58,14 +58,14 @@ function users(state = defaultState, action) {
       };
     }
     case UPDATE_USER_INDEX: {
-      action.id -= 1;
+      const userId = action.id - 1;
       const { userList } = state;
       return {
         userList,
         userDetail: {
-          name: userList[action.id].name,
-          age: userList[action.id].age,
-          userIndex: action.id,
+          name: userList[userId].name,
+          age: userList[userId].age,
+          userIndex: userId,
           userEdit: true,
         },
       };

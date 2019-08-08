@@ -4,21 +4,19 @@ import '../index.css';
 import { connect } from 'react-redux';
 import { UPDATE_USER_INDEX, DELETE_USER } from '../actions/types';
 
-class ListElement extends React.Component {
-  render() {
-    const {
-      index, name, age, edit,
-    } = this.props;
-    return (
-      <tr>
-        <td>{index}</td>
-        <td>{name}</td>
-        <td>{age}</td>
-        <td>{edit}</td>
-        <td>{this.props.delete}</td>
-      </tr>
-    );
-  }
+function ListElement(props) {
+  const {
+    index, name, age, edit,
+  } = props;
+  return (
+    <tr>
+      <td>{index}</td>
+      <td>{name}</td>
+      <td>{age}</td>
+      <td>{edit}</td>
+      <td>{props.delete}</td>
+    </tr>
+  );
 }
 
 class UserList extends React.Component {
@@ -62,7 +60,8 @@ class UserList extends React.Component {
 
   render() {
     const list = [];
-    this.props.users.userList.forEach((user) => {
+    const { users } = this.props;
+    users.userList.forEach((user) => {
       list.push(<ListElement
         index={user.id}
         key={user.id}

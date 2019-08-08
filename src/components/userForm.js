@@ -13,14 +13,16 @@ class UserForm extends React.Component {
   }
 
   handleTextChange(event) {
-    this.props.dispatch({
+    const { dispatch } = this.props;
+    dispatch({
       type: UPDATE_FORM,
       name: event.target.value,
     });
   }
 
   handleNumChange(event) {
-    this.props.dispatch({
+    const { dispatch } = this.props;
+    dispatch({
       type: UPDATE_FORM,
       age: event.target.value,
     });
@@ -47,7 +49,7 @@ class UserForm extends React.Component {
   }
 
   render() {
-    const { name, age } = this.props.users.userDetail;
+    const { users } = this.props;
     return (
       <form onSubmit={this.handleSubmit}>
         <table>
@@ -60,7 +62,7 @@ class UserForm extends React.Component {
                 <div className="form-group">
                   <input
                     type="text"
-                    value={name}
+                    value={users.userDetail.name}
                     onChange={this.handleTextChange}
                   />
                 </div>
@@ -74,7 +76,7 @@ class UserForm extends React.Component {
                 <div className="form-group">
                   <input
                     type="number"
-                    value={age}
+                    value={users.userDetail.age}
                     onChange={this.handleNumChange}
                   />
                 </div>
