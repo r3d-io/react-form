@@ -1,18 +1,19 @@
 import { ADD_USER, DELETE_USER } from './types';
-let nextUserId = 0
+
+let nextUserId = 0;
 
 export const addUser = ({ name, age }) => ({
   type: ADD_USER,
   payload: {
-    id: nextUserId++,
+    id: nextUserId += 1,
     name,
-    age
-  }
+    age,
+  },
 });
 
 export const deleteUser = id => ({
   type: DELETE_USER,
   payload: {
-    id
-  }
+    id,
+  },
 });

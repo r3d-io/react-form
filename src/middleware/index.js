@@ -1,34 +1,35 @@
+import {
+  call, take, put, delay,
+} from 'redux-saga/effects';
 import { ADD_USER } from '../actions/types';
-import { takeEvery, call, take, put, delay, cancel } from 'redux-saga/effects'
 
-const timeoutScheduler = store => next => action => {
-  // console.log("middleware", action)
-  if (action.type !== ADD_USER) {
-    return next(action)
-  }
+// export const timeoutScheduler = store => next => (action) => {
+//   console.log("middleware", action)
+//   if (action.type !== ADD_USER) {
+//     return next(action);
+//   }
 
-  next({ type: "USER_ADD_INPROGRESS" })
-  const timeoutId = setTimeout(() => {
-    next(action)
-    next({ type: "USER_ADD_COMPLETE" })
-  }, 2000)
-}
+//   next({ type: 'USER_ADD_INPROGRESS' });
+//   setTimeout(() => {
+//     next(action);
+//     next({ type: 'USER_ADD_COMPLETE' });
+//   }, 2000);
+// };
 
 function* watchScheduler(action) {
-  console.log(action)
-  action.isInsert = true
-  yield put({ type: "USER_ADD_INPROGRESS" })
-  yield delay(2000)
-  yield put({ type: ADD_USER, ...action })
-  yield put({ type: "USER_ADD_COMPLETE" })
+  const userData = { isInsert: true, ...action };
+  yield put({ type: 'USER_ADD_INPROGRESS' });
+  yield delay(2000);
+  yield put({ type: ADD_USER, ...userData });
+  yield put({ type: 'USER_ADD_COMPLETE' });
 }
 
 function* timeoutSchedulerSaga() {
   while (true) {
-    let action = yield take(ADD_USER)
-    yield call(watchScheduler, action)
+    const action = yield take(ADD_USER);
+    yield call(watchScheduler, action);
   }
 }
 
 // export default timeoutScheduler
-export default timeoutSchedulerSaga
+export default timeoutSchedulerSaga;

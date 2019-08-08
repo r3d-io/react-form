@@ -1,20 +1,22 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../index.css';
 import React from 'react';
+import { connect } from 'react-redux';
 import UserForm from './userForm';
 import UserList from './userList';
-import { connect } from 'react-redux';
 
 class UserContainer extends React.Component {
-
   render() {
-    if (this.props.users.userList.length > 0)
+    const { userList } = this.props.users;
+    if (userList.length > 0) {
       return (
         <div>
           <UserForm />
-          <UserList />,
-      </div>
+          <UserList />
+          ,
+        </div>
       );
+    }
     return (
       <div>
         <UserForm />
@@ -23,8 +25,6 @@ class UserContainer extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return state
-}
+const mapStateToProps = state => state;
 
-export default connect(mapStateToProps)(UserContainer)
+export default connect(mapStateToProps)(UserContainer);

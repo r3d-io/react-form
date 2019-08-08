@@ -28,27 +28,26 @@ class UserForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    if (this.props.users.userDetail.userEdit) {
-      this.props.dispatch({
+    const { users, dispatch } = this.props;
+    if (users.userDetail.userEdit) {
+      dispatch({
         type: UPDATE_USER,
-        name: this.props.users.userDetail.name,
-        age: this.props.users.userDetail.age,
-        id: this.props.users.userDetail.userIndex
+        name: users.userDetail.name,
+        age: users.userDetail.age,
+        id: users.userDetail.userIndex,
       });
-    }
-    else {
-      this.props.dispatch({
+    } else {
+      dispatch({
         type: ADD_USER,
-        name: this.props.users.userDetail.name,
-        age: this.props.users.userDetail.age,
-        id: this.props.users.userList.length + 1,
+        name: users.userDetail.name,
+        age: users.userDetail.age,
+        id: users.userList.length + 1,
       });
     }
   }
 
   render() {
-    let userName = this.props.users.userDetail.name
-    let userAge = this.props.users.userDetail.age
+    const { name, age } = this.props.users.userDetail;
     return (
       <form onSubmit={this.handleSubmit}>
         <table>
@@ -61,7 +60,7 @@ class UserForm extends React.Component {
                 <div className="form-group">
                   <input
                     type="text"
-                    value={userName}
+                    value={name}
                     onChange={this.handleTextChange}
                   />
                 </div>
@@ -75,21 +74,22 @@ class UserForm extends React.Component {
                 <div className="form-group">
                   <input
                     type="number"
-                    value={userAge}
+                    value={age}
                     onChange={this.handleNumChange}
                   />
                 </div>
               </td>
             </tr>
-            <tr><td>
-              <div className="form-group">
-                <input
-                  className="btn btn-success"
-                  type="submit"
-                  value="Submit"
-                />
-              </div>
-            </td>
+            <tr>
+              <td>
+                <div className="form-group">
+                  <input
+                    className="btn btn-success"
+                    type="submit"
+                    value="Submit"
+                  />
+                </div>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -98,8 +98,6 @@ class UserForm extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return state
-}
+const mapStateToProps = state => state;
 
 export default connect(mapStateToProps)(UserForm);
